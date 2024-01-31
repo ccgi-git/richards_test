@@ -1,0 +1,39 @@
+# I just want to see if this triggers an Action. I don't care if it goes through
+
+name: Build and push local images to AWS ECR
+on:
+    # The command below says that we want to run a Github action whenever we perform a push on the main branch.
+    push:
+      branches: [main]
+jobs:
+  build-and-push:
+    name: Build and push to ECR
+    # I am using ubuntu as using macos or windows requires specifying container creation details
+    runs-on: ubuntu-latest
+    steps:
+    # The name Checkout and etc are only descriptors. However, the 'uses' are functions utilized by Github Actions
+    - name: Checkout
+      uses: actions/checkout@v2
+    # Jinja variables below ${{}} are stored in secret key access that are specific PER Github repository
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Login to AWS ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, Tag, and push the image to ECR
+      id: build-image
+      env:
+        # ECR_REGISTRY is populated from the use action function above (aws-actions/amazon-ecr-login@v1) The function generates our AWS registry of 291621539275.dkr.ecr.us-west-2.amazonaws.com
+        # Notice that the command 'steps.login-ecr...' matches against the id above under 'Login to AWS ECR'
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: sftp_cloudwatch
+        IMAGE_TAG: ${{github.ref_name}}
+      run:
+        # The command below is multiple commands placed into one. Github Actions does NOT like multiple run commands below so we've consolidated the commands
+        docker buildx build --push --platform=linux/amd64 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
