@@ -4,7 +4,7 @@ name: Build and push local images to AWS ECR
 on:
     # The command below says that we want to run a Github action whenever we perform a push on the main branch.
     push:
-      branches: [main]
+      branches: [test1]
 jobs:
   build-and-push:
     name: Build and push to ECR
