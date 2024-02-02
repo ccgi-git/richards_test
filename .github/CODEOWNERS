@@ -6,13 +6,14 @@
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
 ###
-* @ccgi-git/ci-team
-###
-###
-* @RichardChuangCCGI
-###
-###
+something.py @ccgi-git/ci-team
 /other_team_dir/ @mbanderaCCGI
+###
+###
+#* @RichardChuangCCGI
+###
+###
+
 ###
 
 # Teams can be specified as code owners as well. Teams should
