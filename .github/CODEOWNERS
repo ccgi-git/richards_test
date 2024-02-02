@@ -7,12 +7,13 @@
 # review when someone opens a pull request.
 ###
 * @ccgi-git/ci-team
-###
-###
-* @RichardChuangCCGI
-###
-###
 /other_team_dir/ @mbanderaCCGI
+###
+###
+#* @RichardChuangCCGI
+###
+###
+
 ###
 
 # Teams can be specified as code owners as well. Teams should
