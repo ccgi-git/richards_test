@@ -2,9 +2,5 @@ version: 0.2
 
 phases:
   build:
-
     commands:
-      - cd app
-      - npm install
-      - npm run lint
-      - npm test
+      - docker buildx build --push --platform=linux/amd64 -t 291621539275.dkr.ecr.us-west-2.amazonaws.com/district_prod_archive_flat_files:test_tag .
