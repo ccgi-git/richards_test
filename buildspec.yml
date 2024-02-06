@@ -5,12 +5,10 @@ phases:
     commands:
       - echo Logging in to Amazon ECR....
       - aws --version
-      # update the following line with your own region
+      # update the following line with your own region.
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 291621539275.dkr.ecr.us-west-2.amazonaws.com
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      # Your image tag name must always be lowercase
+      # Your image tag name must always be lowercase.
       - IMAGE_TAG=test_tag
-      - pwd
       - REPOSITORY_URI=291621539275.dkr.ecr.us-west-2.amazonaws.com/district_prod_archive_flat_files
       - docker --version
   build:
