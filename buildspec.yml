@@ -1,6 +1,15 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR....
+      - aws --version
+      # update the following line with your own region
+      - $(aws ecr get-login --no-include-email --region eu-west-2)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=TEST_TAG}
+      - REPOSITORY_URI=291621539275.dkr.ecr.us-west-2.amazonaws.com/district_prod_archive_flat_files
   build:
     commands:
-      - docker buildx build --push --platform=linux/amd64 -t 291621539275.dkr.ecr.us-west-2.amazonaws.com/district_prod_archive_flat_files:test_tag .
+      - docker buildx build --push --platform=linux/amd64 -t $REPOSITORY_URI:$IMAGE_TAG
