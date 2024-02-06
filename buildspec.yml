@@ -18,4 +18,4 @@ phases:
       - echo $REPOSITORY_URI:$IMAGE_TAG
       - docker build -t $IMAGE_TAG .
       - docker tag $IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
-      - docker push --platform=linux/amd64 $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
