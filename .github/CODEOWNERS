@@ -7,7 +7,7 @@
 # review when someone opens a pull request.
 ###
 /other_team_dir/ @mbanderaCCGI
-* @RichardChuangCCGI @ccgi-git/ci-team
+* @RichardChuangCCGI
 ###
 ###
 #* @RichardChuangCCGI
