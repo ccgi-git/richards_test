@@ -12,4 +12,7 @@ phases:
       - REPOSITORY_URI=291621539275.dkr.ecr.us-west-2.amazonaws.com/district_prod_archive_flat_files
   build:
     commands:
-      - docker buildx build --push --platform=linux/amd64 -t $REPOSITORY_URI:$IMAGE_TAG
+      - echo $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $IMAGE_TAG .
+      - docker tag $IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - docker push --platform=linux/amd64 $REPOSITORY_URI:$IMAGE_TAG
