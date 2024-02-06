@@ -1,5 +1,5 @@
 FROM --platform=linux/amd64 python:3.8-slim-buster
-WORKDIR C/Users/hailey/Desktop/GitTest
+
 # to avoid python printing issues in docker containers
 ENV PYTHONUNBUFFERED=1
 ##########
@@ -19,7 +19,8 @@ RUN apt-get install -y libssl-dev libffi-dev
 
 # Upgrade pip
 RUN python3 -m pip install --upgrade pip
-COPY . /installed_files
+RUN pwd
+COPY ./loading /installed_files
 RUN pip3 install -r ./installed_files/requirements.txt
 
 RUN mkdir /snow_parquet
