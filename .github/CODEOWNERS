@@ -6,7 +6,7 @@
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
 ###
-* @ccgi-git/ci-team
+* @RichardChuangCCGI
 other_team_dir/ @mbanderaCCGI
 
 ###
