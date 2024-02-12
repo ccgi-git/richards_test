@@ -1,5 +1,5 @@
 import pytest
-from snowflake.snowpark.session import Session
+
 @pytest.fixture(scope = "session")
 def snowflake():
     snowflake_conn_prop = {
