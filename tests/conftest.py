@@ -63,7 +63,8 @@ def get_secret(secret_name, session):
             pass
     return json.loads(secret)
 @pytest.fixture(scope = "session")
-def snowflake(secrets):
+def snowflake():
+    secrets = get_secret("snowflake_credentials", get_aws_session())
     snowflake_conn_prop = {
         'user': secrets['user'],
         'password': secrets['pass'],
@@ -73,5 +74,5 @@ def snowflake(secrets):
     }
     session = Session.builder.configs(snowflake_conn_prop).create()
 
-    return snowflake_conn_prop
+    return session
 

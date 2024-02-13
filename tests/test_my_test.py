@@ -11,5 +11,4 @@ def test_func(number, expected):
     assert add_one(number) == expected
 
 def test_connection(snowflake):
-    your_secrets = get_secret("snowflake_credentials", get_aws_session())
-    snowflake(your_secrets)
+    snowflake
