@@ -1,5 +1,5 @@
 from test_package.example import add_one
-from conftest import get_aws_session, get_secret
+
 import pytest
 
 @pytest.mark.parametrize("number, expected",
