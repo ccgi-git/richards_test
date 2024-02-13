@@ -1,4 +1,5 @@
 from test_package.example import add_one
+from conftest import get_aws_session, get_secret
 import pytest
 
 @pytest.mark.parametrize("number, expected",
@@ -10,4 +11,5 @@ def test_func(number, expected):
     assert add_one(number) == expected
 
 def test_connection(snowflake):
-    snowflake
+    your_secrets = get_secret("snowflake_credentials", get_aws_session())
+    snowflake(your_secrets)
