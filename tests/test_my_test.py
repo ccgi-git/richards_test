@@ -12,3 +12,4 @@ def test_func(number, expected):
 
 def test_connection(snowflake):
     snowflake
+    
