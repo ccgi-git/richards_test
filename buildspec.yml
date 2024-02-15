@@ -1,6 +1,14 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+      - pip install -r requirements_dev.txt
+      - pip install -e .
+    finally: 
+      - mypy src
+      - pytest
   pre_build:
     commands:
       - echo Logging in to Amazon ECR....
